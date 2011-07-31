@@ -7,13 +7,16 @@ Item = Backbone.Model.extend
     content: ""
 
   initialize: ->
-    @set
-      content: @defaults.content
-      deleted: @defaults.deleted
-      order: @defaults.order
+    for a in _.keys @defaults
+      continue if @get a
+      obj = {}
+      obj[a] = @defaults[a]
+      @set obj
 
   url: ->
     ""
+
+exports.Item = Item
 
 List = Backbone.Collection.extend
   model: Item
@@ -45,13 +48,11 @@ App = Backbone.View.extend
     return
 
   render: ->
-    console.log @list
+    # TODO: determine what (if anything to do)
 
   addOne: (item) ->
-    console.log("addOne called", item, item.get "content")
     view = new ListItemView model: item
     window.foo = view
-    console.log view.render().el
     @$("#destination").append view.render().el
 
   newAttributes: ->
@@ -62,10 +63,9 @@ App = Backbone.View.extend
 
   createOnEnter: (e) ->
     return unless e.keyCode == 13
-    item = new Item @newAttributes
+    item = new Item @newAttributes()
     @list.add item
     @input.val ""
-    #@list.create @newAttributes
 
 
 exports.app = new App()
