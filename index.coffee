@@ -26,7 +26,7 @@ ListItemView = Backbone.View.extend
   template: _.template($("#list-item-template").html())
 
   render: ->
-    @$(@el).html(@template @model.toJSON())
+    @$(@el).html(@template @model.toJSON()).addClass "ui-state-default"
     @setContent
     @
 
@@ -49,7 +49,9 @@ App = Backbone.View.extend
     return
 
   render: ->
-    # TODO: determine what (if anything to do)
+    @destination.sortable
+      placeholder: "ui-state-highlight"
+    @destination.disableSelection()
 
   addOne: (item) ->
     view = new ListItemView model: item
