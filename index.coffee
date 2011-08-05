@@ -44,6 +44,7 @@ App = Backbone.View.extend
     @list = new List()
     @list.bind "all", @render, this
     @list.bind "add", @addOne, this
+    @destination = @$ "#destination"
     @render()
     return
 
@@ -53,7 +54,7 @@ App = Backbone.View.extend
   addOne: (item) ->
     view = new ListItemView model: item
     window.foo = view
-    @$("#destination").append view.render().el
+    @destination.append view.render().el
 
   newAttributes: ->
     return {
