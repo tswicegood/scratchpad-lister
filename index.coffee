@@ -27,11 +27,15 @@ ListItemView = Backbone.View.extend
 
   render: ->
     @$(@el).html(@template @model.toJSON()).addClass "ui-state-default"
+    @$(@el).find(".delete").click _.bind @delete
     @setContent
     @
 
   setContent: ->
     @$(".content").text @model.get "content"
+
+  delete: (e) ->
+    @$(e.target).parents("li").hide "fade", {}, 250
 
 App = Backbone.View.extend
   el: $ "#app"
