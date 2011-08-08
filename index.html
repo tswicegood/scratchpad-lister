@@ -3,9 +3,11 @@
     <head>
         <link type="text/css" href="vendor/jquery-ui-1.8.14.custom/css/ui-lightness/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
         <style type="text/css">
-                #destination { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-                #destination li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-                #destination li span { position: absolute; margin-left: -1.3em; }
+            #destination { list-style-type: none; margin: 0; padding: 0; }
+            #destination li { height: 2em; }
+            button.ui-button-icon-only { width: 1.5em; }
+            button.ui-button-icon-only .ui-button-text { padding: 0; }
+
         </style>
     </head>
 
@@ -29,10 +31,8 @@
 
         <script type="text/template" id="list-item-template">
             <div class="item">
-                <div class="content"><%= content %></div>
-                <ul class="actions">
-                    <li><a href="#" class="delete">Delete</a></li>
-                </ul>
+                <span class="content"><%= content %></span>
+                <button class="delete">Delete</button
             </div>
         </script>
     </body>

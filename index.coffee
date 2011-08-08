@@ -27,12 +27,9 @@ ListItemView = Backbone.View.extend
 
   render: ->
     @$(@el).html(@template @model.toJSON()).addClass "ui-state-default"
-    @$(@el).find(".delete").click _.bind @delete
-    @setContent
+    @$(@el).find(".content").text(@model.get "content")
+    @$(@el).find(".delete").click(_.bind @delete).button({icons: {primary: "ui-icon-closethick"}, text: false})
     @
-
-  setContent: ->
-    @$(".content").text @model.get "content"
 
   delete: (e) ->
     @$(e.target).parents("li").hide "fade", {}, 250
